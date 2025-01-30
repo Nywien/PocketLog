@@ -1,46 +1,69 @@
-<div>
+<div class="container">
   <h3>Add Transaction</h3>
   <hr/>
   <form [formGroup]="transactionForm" (ngSubmit)="saveTransaction()">
 
-    <div>
-      <mat-form-field appearance="fill">
+    <div class="input">
+      <mat-form-field class="full-width" appearance="fill">
         <mat-label>Transaction Type</mat-label>
         <mat-select formControlName="type" required>
           <mat-option *ngFor="let type of transactionTypes" [value]="type">
             {{ type }}
           </mat-option>
         </mat-select>
+        <small *ngIf="transactionForm.get('type')?.invalid
+                    && transactionForm.get('type')?.touched
+                    && !transactionForm.get('type')?.errors?.['serverError']"
+               style="color: red">
+          Please choose a type!
+        </small>
       </mat-form-field>
     </div>
 
-    <div>
-      <mat-form-field class="amount">
+    <div class="input">
+      <mat-form-field class="full-width">
         <mat-label>Amount</mat-label>
         <input formControlName="amount" type="number" matInput placeholder="0">
+        <small *ngIf="transactionForm.get('amount')?.invalid
+                    && transactionForm.get('amount')?.touched
+                    && !transactionForm.get('amount')?.errors?.['serverError']"
+               style="color: red">
+          Please enter a value of 1 or higher!
+        </small>
       </mat-form-field>
     </div>
 
-    <div>
-      <mat-form-field class="description">
+    <div class="input">
+      <mat-form-field class="full-width">
         <mat-label>Description</mat-label>
         <input formControlName="description" type="text" matInput placeholder="Write something...">
+        <small *ngIf="transactionForm.get('description')?.invalid
+                    && transactionForm.get('description')?.touched
+                    && !transactionForm.get('description')?.errors?.['serverError']"
+               style="color: red">
+          The description must be between 5 and 25 characters!
+        </small>
       </mat-form-field>
     </div>
 
-    <div>
-      <mat-form-field class="transactionDate">
+    <div class="input">
+      <mat-form-field class="full-width">
         <mat-label>Choose a date</mat-label>
         <input formControlName="transactionDate" matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <small *ngIf="transactionForm.get('transactionDate')?.invalid
+                    && transactionForm.get('transactionDate')?.touched
+                    && !transactionForm.get('transactionDate')?.errors?.['serverError']"
+               style="color: red">
+          Please choose a date!
+        </small>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
 
-    <div>
-      <button mat-raised-button color="primary" type="submit" [disabled]="transactionForm.invalid">
-        Save Transaction
+    <div class="input position">
+      <button class="button" type="submit" [disabled]="transactionForm.invalid">
+        Save
       </button>
     </div>
 

@@ -4,7 +4,7 @@ import {TransactionFormComponent} from "./components/transaction-form/transactio
 import {TransactionListComponent} from "./components/transaction-list/transaction-list.component";
 
 const routes: Routes = [
-  {path: 'addTransactions', component: TransactionFormComponent},
+  {path: 'add', component: TransactionFormComponent},
   {path: 'all', component: TransactionListComponent},
 
 ];
